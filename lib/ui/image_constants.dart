@@ -1,0 +1,1 @@
+const postBackground = 'assets/images/post_background.png';
