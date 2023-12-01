@@ -1,0 +1,4 @@
+enum AchievementMetric {
+  points(),
+  distance();
+}

@@ -38,7 +38,7 @@ class Post extends StatelessWidget {
               child: Opacity(
                   opacity: 0.5,
                   child: Image.asset(
-                    postBackground,
+                    ImageConstants.paperBackground,
                     fit: BoxFit.cover,
                     width: double.infinity,
                     height: double.infinity,

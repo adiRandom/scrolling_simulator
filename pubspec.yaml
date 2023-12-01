@@ -83,9 +83,12 @@ flutter:
            style: italic
          - asset: assets/fonts/Lekton-Bold.ttf
            weight: 700
-     - family: KirangHaerang
+     - family: MeriendaOne
        fonts:
-         - asset: assets/fonts/KirangHaerang-Regular.ttf
+         - asset: assets/fonts/MeriendaOne-Regular.ttf
+     - family: Lexend
+       fonts:
+         - asset: assets/fonts/Lexend-VariableFont_wght.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
