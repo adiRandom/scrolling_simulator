@@ -1,13 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SizedSwitch extends StatelessWidget {
   final bool isSelected;
-  final VoidCallback onTap;
+  final Function(bool) onTap;
   final double? width;
   final double? height;
   final MaterialStateColor? thumbColor;
   final Color? activeColor;
+  final Color? inactiveTrackColor;
 
   const SizedSwitch(
       {super.key,
@@ -16,7 +16,8 @@ class SizedSwitch extends StatelessWidget {
       this.width,
       this.height,
       this.thumbColor,
-      this.activeColor});
+      this.activeColor,
+      this.inactiveTrackColor});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +29,12 @@ class SizedSwitch extends StatelessWidget {
             child: Material(
                 color: Colors.transparent,
                 child: Switch(
-                    value: true,
-                    onChanged: (value) {},
+                    value: isSelected,
+                    onChanged: (value) {
+                      onTap(value);
+                    },
                     thumbColor: thumbColor,
+                    inactiveTrackColor: inactiveTrackColor,
                     activeColor: activeColor))));
   }
 }

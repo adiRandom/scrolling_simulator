@@ -14,4 +14,6 @@ class LeaderboardItem {
       required this.metric});
 }
 
+enum LeaderboardPeriod { daily, weekly, monthly }
 
+enum LeaderboardType { points, distance }

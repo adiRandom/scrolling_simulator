@@ -3,7 +3,6 @@ import 'package:scrolling_simulator/domain/models/leaderboard.dart';
 import 'package:scrolling_simulator/domain/models/user.dart';
 import 'package:scrolling_simulator/theme/colors.dart';
 import 'package:scrolling_simulator/ui/components/buttons/icon_toggle_button.dart';
-import 'package:scrolling_simulator/ui/components/leaderboard/leaderboard_cell.dart';
 import 'package:scrolling_simulator/ui/components/leaderboard/leaderboard_header.dart';
 import 'package:scrolling_simulator/ui/components/leaderboard/leaderboard_list.dart';
 import 'package:scrolling_simulator/ui/components/switch/sized_switch.dart';
@@ -13,7 +12,7 @@ import '../../domain/models/metric.dart';
 import '../components/tabs/edge_bookmark_tab.dart';
 import '../image_constants.dart';
 
-class LeaderboardScreen extends StatelessWidget {
+class LeaderboardScreen extends StatefulWidget {
   final List<EdgeBookmarkTabModel> tabs = [
     EdgeBookmarkTabModel(
         iconPath: ImageConstants.pointsIcon,
@@ -51,6 +50,34 @@ class LeaderboardScreen extends StatelessWidget {
       (states) => ThemeColor.leaderboardUserSelectorThumbColor);
 
   @override
+  State<StatefulWidget> createState() => _LeaderboardScreenState();
+}
+
+class _LeaderboardScreenState extends State<LeaderboardScreen> {
+  bool isVisibilityWorldwide = false;
+  LeaderboardPeriod period = LeaderboardPeriod.daily;
+  LeaderboardType type = LeaderboardType.points;
+
+  void _onTabSelected(int index) {
+    setState(() {
+      type = LeaderboardType.values[index];
+    });
+  }
+
+  void _onPeriodSelected(int index) {
+    setState(() {
+      period = LeaderboardPeriod.values[index];
+    });
+  }
+
+  void _onVisibilityWorldwideSelected(isSelected) {
+    print(isSelected);
+    setState(() {
+      isVisibilityWorldwide = isSelected;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
@@ -58,7 +85,7 @@ class LeaderboardScreen extends StatelessWidget {
         padding: const EdgeInsets.only(top: 64),
         decoration: const BoxDecoration(
             image: DecorationImage(
-              // scale: 10,
+                // scale: 10,
                 image: AssetImage(ImageConstants.paperBackground),
                 colorFilter: ColorFilter.mode(
                     ThemeColor.leaderboardColor, BlendMode.color),
@@ -71,7 +98,7 @@ class LeaderboardScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   LeaderboardHeader(
-                      currentUserLeaderboard: currentUserLeaderboard),
+                      currentUserLeaderboard: widget.currentUserLeaderboard),
                   const SizedBox(height: 16),
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -80,19 +107,19 @@ class LeaderboardScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Row(
-                              children: periodButtonIcons
-                                  .map((icon) => Padding(
+                              children: widget.periodButtonIcons.indexed
+                                  .map((indexedIcon) => Padding(
                                       padding: const EdgeInsets.only(right: 4),
                                       child: IconToggleButton(
-                                          iconPath: icon,
+                                          iconPath: indexedIcon.$2,
                                           selectedColor: ThemeColor
                                               .leaderboardSelectedColor,
-                                          isSelected:
-                                              // TODO: Extract in smrter state
-                                              icon ==
-                                                  ImageConstants
-                                                      .dailyCalendarIcon,
-                                          onTap: () {})))
+                                          isSelected: indexedIcon.$1 ==
+                                              LeaderboardPeriod.values
+                                                  .indexOf(period),
+                                          onTap: () {
+                                            _onPeriodSelected(indexedIcon.$1);
+                                          })))
                                   .toList()),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -103,11 +130,13 @@ class LeaderboardScreen extends StatelessWidget {
                                   width: 42),
                               const SizedBox(width: 6),
                               SizedSwitch(
-                                isSelected: true,
-                                onTap: () {},
-                                thumbColor: usersSelectorColor,
+                                isSelected: isVisibilityWorldwide,
+                                onTap: _onVisibilityWorldwideSelected,
+                                thumbColor: widget.usersSelectorColor,
                                 width: 42,
                                 height: 32,
+                                inactiveTrackColor:
+                                    ThemeColor.leaderboardUsersSelectorColor,
                                 activeColor:
                                     ThemeColor.leaderboardUsersSelectorColor,
                               ),
@@ -147,7 +176,7 @@ class LeaderboardScreen extends StatelessWidget {
                               items: List.generate(
                                   20,
                                   (index) => LeaderboardItem(
-                                      user: sampleUser,
+                                      user: widget.sampleUser,
                                       rank: index + 1,
                                       score: 100000 - index * 1000,
                                       metric: AchievementMetric.points))))
@@ -159,7 +188,9 @@ class LeaderboardScreen extends StatelessWidget {
               top: 0,
               left: 0,
               child: EdgeBookmarkTabs(
-                  tabs: tabs, selectedIndex: 0, onTabSelected: (index) {}))
+                  tabs: widget.tabs,
+                  selectedIndex: LeaderboardType.values.indexOf(type),
+                  onTabSelected: _onTabSelected))
         ]));
   }
 }

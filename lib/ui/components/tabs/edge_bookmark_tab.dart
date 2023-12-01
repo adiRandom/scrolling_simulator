@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:scrolling_simulator/ui/image_constants.dart';
 
@@ -24,7 +22,7 @@ class EdgeBookmarkTab extends StatelessWidget {
 
   static const animationDuration = Duration(milliseconds: 300);
 
-  double get width => isSelected ? 86 : 64;
+  double get width => isSelected ? 92 : 64;
 
   double get leftPadding => isSelected ? 40 : 12;
 
@@ -47,7 +45,11 @@ class EdgeBookmarkTab extends StatelessWidget {
           padding:
               EdgeInsets.only(top: 8, bottom: 8, right: 24, left: leftPadding),
           duration: EdgeBookmarkTab.animationDuration,
-          child: Image(image: AssetImage(model.iconPath)),
+          child: Image(
+            image: AssetImage(model.iconPath),
+            height: 32,
+            width: 32,
+          ),
         ));
   }
 }

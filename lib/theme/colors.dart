@@ -6,7 +6,7 @@ class ThemeColor {
   static const topicColor = Color(0xFFE1D1A9);
   static const leaderboardColor = Color(0xFFFFCEC4);
   static const leaderboardCellColor = Color(0xFFEDCEC1);
-  static const leaderboardSelectedColor = Color(0xFFE1A69A);
+  static const leaderboardSelectedColor = Color(0xFFECB1A6);
   static const pointsTabBgColor = Color(0xFFF9E7AE);
   static const distanceTabBgColor = Color(0xFFBBBAC3);
   static const leaderboardUsersSelectorColor = Color(0xFF9EACB5);
