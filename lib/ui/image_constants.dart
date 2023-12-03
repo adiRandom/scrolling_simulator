@@ -9,4 +9,14 @@ class ImageConstants {
   static const worldWideIcon = 'assets/icons/worldwide.png';
   static const leaderboardBackground =
       'assets/images/leaderboard_background.png';
+
+  static const achievementBronzeBackground = 'assets/images/bronze_paper.png';
+  static const achievementSilverBackground = 'assets/images/silver_paper.png';
+  static const achievementGoldBackground = 'assets/images/gold_paper.png';
+  static const achievementLockedBackground = 'assets/images/locked_paper.png';
+
+  static const trophyAchievementIcon = 'assets/icons/achievements/trophy.png';
+
+  static const achievementBgMedal = 'assets/images/achievement_medal.png';
+  static const achievementBgTrophy = 'assets/images/achievement_trophy.png';
 }

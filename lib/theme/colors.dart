@@ -11,4 +11,7 @@ class ThemeColor {
   static const distanceTabBgColor = Color(0xFFBBBAC3);
   static const leaderboardUsersSelectorColor = Color(0xFF9EACB5);
   static const leaderboardUserSelectorThumbColor = Color(0xFF406476);
+  static const achievementCardBorderColor = Color(0XFF1E1E1E);
+  static const darkBlue = Color(0XFF1D2432);
+  static const achievementBgColor = Color(0XFF807E6E);
 }

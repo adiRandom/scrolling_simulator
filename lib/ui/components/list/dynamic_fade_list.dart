@@ -1,11 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DynamicFadeList extends StatefulWidget {
   final int itemCount;
   final IndexedWidgetBuilder itemBuilder;
+  final int threshold;
+  final List<double> stops;
 
-  const DynamicFadeList({super.key, required this.itemCount, required this.itemBuilder});
+  const DynamicFadeList(
+      {super.key,
+      required this.itemCount,
+      required this.itemBuilder,
+      this.threshold = 0,
+      this.stops = const [0.0, 0.2, 0.7, 1.0]});
 
   @override
   State<DynamicFadeList> createState() => _DynamicFadeListState();
@@ -23,7 +29,8 @@ class _DynamicFadeListState extends State<DynamicFadeList> {
   }
 
   void _scrollListener() {
-    if (_scrollController.offset >= _scrollController.position.maxScrollExtent &&
+    if (_scrollController.offset >=
+            _scrollController.position.maxScrollExtent - widget.threshold &&
         !_scrollController.position.outOfRange) {
       if (!_isBottom) {
         setState(() {
@@ -38,7 +45,8 @@ class _DynamicFadeListState extends State<DynamicFadeList> {
       }
     }
 
-    if (_scrollController.offset <= _scrollController.position.minScrollExtent &&
+    if (_scrollController.offset <=
+            _scrollController.position.minScrollExtent + widget.threshold &&
         !_scrollController.position.outOfRange) {
       if (!_isTop) {
         setState(() {
@@ -62,12 +70,12 @@ class _DynamicFadeListState extends State<DynamicFadeList> {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: <Color>[
-            _isTop ?  Colors.black :Colors.transparent,
+            _isTop ? Colors.black : Colors.transparent,
             Colors.black,
             Colors.black,
             _isBottom ? Colors.black : Colors.transparent
           ],
-          stops: const [0.0, 0.2,0.7, 1.0],
+          stops: widget.stops,
         ).createShader(bounds);
       },
       blendMode: BlendMode.dstIn,

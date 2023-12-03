@@ -1,10 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scrolling_simulator/domain/models/leaderboard.dart';
 
-import '../../list/dynamic_fade_list.dart';
+import '../list/dynamic_fade_list.dart';
 import 'leaderboard_cell.dart';
 
 class LeaderboardList extends StatelessWidget {
