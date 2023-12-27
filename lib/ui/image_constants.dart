@@ -19,4 +19,18 @@ class ImageConstants {
 
   static const achievementBgMedal = 'assets/images/achievement_medal.png';
   static const achievementBgTrophy = 'assets/images/achievement_trophy.png';
+
+  static const feedNavButton = 'assets/icons/nav/feed.png';
+  static const feedNavSelectedButton = 'assets/icons/nav/feed_selected.png';
+  static const leaderboardNavButton = 'assets/icons/nav/leaderboard.png';
+  static const leaderboardNavSelectedButton =
+      'assets/icons/nav/leaderboard_selected.png';
+  static const achievementNavButton = 'assets/icons/nav/achievement.png';
+  static const achievementNavSelectedButton =
+      'assets/icons/nav/achievement_selected.png';
+
+  static const navigationBackground =
+      'assets/animations/nav/sprites/paper_unfold_12.png';
+  static const compassButton = 'assets/icons/nav/compass.png';
+  static const compassButtonPressed = 'assets/icons/nav/compass_selected.png';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scrolling_simulator/ui/screens/achievement_screen.dart';
+import 'package:scrolling_simulator/ui/screens/nav/root_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +24,8 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const AchievementScreen());
+        home: const RootScreen(
+          child: AchievementScreen(),
+        ));
   }
 }

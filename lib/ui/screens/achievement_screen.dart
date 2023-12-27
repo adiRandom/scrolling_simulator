@@ -7,6 +7,7 @@ import '../../theme/text_style.dart';
 import '../components/achievement/achievement_cell.dart';
 import '../components/list/dynamic_fade_list.dart';
 import '../image_constants.dart';
+import '../size_constants.dart';
 
 class AchievementScreen extends StatefulWidget {
   const AchievementScreen({super.key});
@@ -137,7 +138,8 @@ class _AchievementScreenState extends State<AchievementScreen> {
               child: Image.asset(ImageConstants.achievementBgTrophy,
                   width: 190, height: 240)),
           Padding(
-              padding: const EdgeInsets.only(top: 116, bottom: 100),
+              padding: const EdgeInsets.only(
+                  top: 116, bottom: SizeConstants.compassBottomPadding),
               child: SizedBox(
                 width: double.infinity,
                 height: double.infinity,

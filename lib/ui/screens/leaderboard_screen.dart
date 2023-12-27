@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:scrolling_simulator/domain/models/leaderboard.dart';
 import 'package:scrolling_simulator/domain/models/user.dart';
 import 'package:scrolling_simulator/theme/colors.dart';
-import 'package:scrolling_simulator/ui/components/buttons/icon_toggle_button.dart';
+import 'package:scrolling_simulator/ui/components/buttons/border_icon_toggle_button.dart';
 import 'package:scrolling_simulator/ui/components/leaderboard/leaderboard_header.dart';
 import 'package:scrolling_simulator/ui/components/leaderboard/leaderboard_list.dart';
 import 'package:scrolling_simulator/ui/components/switch/sized_switch.dart';
 import 'package:scrolling_simulator/ui/components/tabs/edge_bookmark_tabs.dart';
+import 'package:scrolling_simulator/ui/size_constants.dart';
 
 import '../../domain/models/metric.dart';
 import '../components/tabs/edge_bookmark_tab.dart';
@@ -82,7 +83,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     return Container(
         width: double.infinity,
         height: double.infinity,
-        padding: const EdgeInsets.only(top: 64),
+        padding: const EdgeInsets.only(top: SizeConstants.topScreenPadding),
         decoration: const BoxDecoration(
             image: DecorationImage(
                 // scale: 10,
@@ -110,7 +111,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                               children: widget.periodButtonIcons.indexed
                                   .map((indexedIcon) => Padding(
                                       padding: const EdgeInsets.only(right: 4),
-                                      child: IconToggleButton(
+                                      child: BorderIconToggleButton(
                                           iconPath: indexedIcon.$2,
                                           selectedColor: ThemeColor
                                               .leaderboardSelectedColor,
@@ -171,7 +172,9 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                       Container(
                           width: double.infinity,
                           padding: const EdgeInsets.only(
-                              left: 24, right: 24, bottom: 64),
+                              left: 24,
+                              right: 24,
+                              bottom: SizeConstants.compassBottomPadding),
                           child: LeaderboardList(
                               items: List.generate(
                                   20,

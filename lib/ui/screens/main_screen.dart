@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/models/post.dart';
@@ -54,44 +53,39 @@ class _MainScreen extends State<MainScreen> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Scrolling Simulator',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home:  Post(
-          post: const PostModel(
+    return Post(
+      post: const PostModel(
+        id: 1,
+        topics: [
+          Topic(
             id: 1,
-            topics: [
-              Topic(
-                id: 1,
-                emoji: '🔥',
-                name: 'Fire',
-              ),
-              Topic(
-                id: 2,
-                emoji: '📰',
-                name: 'News',
-              ),
-            ],
-            author: User(
-              id: 1,
-              username: 'johndoe',
-              avatarUrl:
-              'https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg',
-            ),
-            content:
-            'When you light a candle to set the mood and accidentally summon a fire elemental. 🔥🔥 #DateNightGoneWrong',
-            imageUrl:
-            'https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg',
-            title: 'My Really Long Headline Lorem Ipsum Test',
-            subtitle: 'Subtitle more info etc who the fuck asked',
+            emoji: '🔥',
+            name: 'Fire',
           ),
-          postIndex: 12,
-          isLiked: isLiked,
-          isDisliked: isDisliked,
-          isCrossPosted: isCrossPosted,
-          onEngage: onEngage ,
-        ));
+          Topic(
+            id: 2,
+            emoji: '📰',
+            name: 'News',
+          ),
+        ],
+        author: User(
+          id: 1,
+          username: 'johndoe',
+          avatarUrl:
+              'https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg',
+        ),
+        content:
+            'When you light a candle to set the mood and accidentally summon a fire elemental. 🔥🔥 #DateNightGoneWrong',
+        imageUrl:
+            'https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg',
+        title: 'My Really Long Headline Lorem Ipsum Test',
+        subtitle: 'Subtitle more info etc who the fuck asked',
+      ),
+      postIndex: 12,
+      isLiked: isLiked,
+      isDisliked: isDisliked,
+      isCrossPosted: isCrossPosted,
+      onEngage: onEngage,
+    );
   }
 }
