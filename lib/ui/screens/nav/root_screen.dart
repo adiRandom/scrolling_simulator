@@ -21,6 +21,12 @@ class _RootScreenState extends State<RootScreen> {
     });
   }
 
+  void onNavPerformed() {
+    setState(() {
+      isNavScreenOpen = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,7 +35,10 @@ class _RootScreenState extends State<RootScreen> {
       child: Stack(
         children: [
           widget.child,
-          if (isNavScreenOpen) const NavigationScreen(),
+          if (isNavScreenOpen)
+            NavigationScreen(
+              onNavAway: onNavPerformed,
+            ),
           Positioned.fill(
               bottom: 16,
               child: Align(
