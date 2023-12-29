@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:scrolling_simulator/ui/components/buttons/asset_toggle_button.dart';
 import 'package:scrolling_simulator/ui/image_constants.dart';
 import 'package:scrolling_simulator/ui/screens/nav/navigation_screen.dart';
+import 'package:scrolling_simulator/ui/screens/nav/paper_unfold.dart';
 
 class RootScreen extends StatefulWidget {
   final Widget child;
@@ -38,6 +39,11 @@ class _RootScreenState extends State<RootScreen> {
           if (isNavScreenOpen)
             NavigationScreen(
               onNavAway: onNavPerformed,
+            ),
+          if (isNavScreenOpen)
+            const PaperUnfold(
+              unfoldAnimationDuration: 1500,
+              translateAnimationDuration: 800,
             ),
           Positioned.fill(
               bottom: 16,

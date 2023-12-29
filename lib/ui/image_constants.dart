@@ -30,7 +30,9 @@ class ImageConstants {
       'assets/icons/nav/achievement_selected.png';
 
   static const navigationBackground =
-      'assets/animations/nav/sprites/paper_unfold_12.png';
+      'assets/animations/nav/sprites/paper_unfold_10.png';
   static const compassButton = 'assets/icons/nav/compass.png';
   static const compassButtonPressed = 'assets/icons/nav/compass_selected.png';
+
+  static const paperUnfoldBasePath = 'assets/animations/nav/sprites/';
 }
