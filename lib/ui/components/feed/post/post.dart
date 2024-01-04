@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:scrolling_simulator/theme/colors.dart';
 import 'package:scrolling_simulator/ui/components/feed/post/engagement_action.dart';
 import 'package:scrolling_simulator/ui/components/feed/post/engagement_bar.dart';
 import 'package:scrolling_simulator/ui/components/feed/post/post_header.dart';
@@ -7,6 +6,7 @@ import 'package:scrolling_simulator/ui/components/feed/post/topic.dart';
 import 'package:scrolling_simulator/ui/components/feed/skeleton.dart';
 
 import '../../../../domain/models/post.dart';
+import '../../../../theme/colors.dart';
 import '../../../../theme/text_style.dart';
 import '../../../image_constants.dart';
 
@@ -31,7 +31,7 @@ class Post extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      Expanded(
+      Positioned.fill(
           child: ColorFiltered(
               colorFilter:
                   const ColorFilter.mode(ThemeColor.postColor, BlendMode.color),
