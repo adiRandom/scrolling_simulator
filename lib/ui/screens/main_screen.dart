@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scrolling_simulator/ui/components/list/infinite_list.dart';
 
 import '../../data/types.dart';
 import '../../domain/models/post.dart';
@@ -7,6 +6,7 @@ import '../../domain/models/topic.dart';
 import '../../domain/models/user.dart';
 import '../components/feed/post/engagement_action.dart';
 import '../components/feed/post/post.dart';
+import '../components/list/infinite_page_viewer.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -95,7 +95,7 @@ class _MainScreen extends State<MainScreen> {
         height: double.infinity,
         child: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
-          return InfiniteList<PostModel>(
+          return InfinitePageViewer<PostModel>(
               pageRequest: getPage,
               itemBuilder: (ctx, post) => SizedBox(
                   height: constraints.maxHeight,

@@ -2,20 +2,24 @@ import 'dart:developer' as developer;
 
 import 'package:flutter/cupertino.dart';
 import 'package:scrolling_simulator/extensions/list_extensions.dart';
+import 'package:scrolling_simulator/ui/components/list/types.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../data/types.dart';
 
 class InfiniteList<T> extends StatefulWidget {
   final Future<PaginatedData<T>> Function(int page) pageRequest;
-  final Widget Function(BuildContext context, T item) itemBuilder;
+  final ItemBuilder<T> itemBuilder;
+  final Widget Function(ItemBuilderWithIndex<T> itemBuilder, List<T> data)
+      hostListBuilder;
   final int threshold;
 
   const InfiniteList(
       {super.key,
       required this.pageRequest,
       required this.itemBuilder,
-      required this.threshold});
+      required this.threshold,
+      required this.hostListBuilder});
 
   @override
   State<StatefulWidget> createState() => _InfiniteListState<T>();
@@ -54,25 +58,25 @@ class _InfiniteListState<T> extends State<InfiniteList<T>> {
     });
   }
 
+  Widget buildListItem(BuildContext context, int index) {
+    if (index == data.length - widget.threshold) {
+      developer.log("Load more $index");
+      return VisibilityDetector(
+        key: const Key("load-more"),
+        onVisibilityChanged: (info) {
+          if (info.visibleFraction > 0) {
+            loadNextPage();
+          }
+        },
+        child: widget.itemBuilder(context, data[index]),
+      );
+    }
+
+    return Container(child: widget.itemBuilder(context, data[index]));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          if (index == data.length - widget.threshold) {
-            developer.log("Load more $index");
-            return VisibilityDetector(
-              key: const Key("load-more"),
-              onVisibilityChanged: (info) {
-                if (info.visibleFraction > 0) {
-                  loadNextPage();
-                }
-              },
-              child: widget.itemBuilder(context, data[index]),
-            );
-          }
-
-          return Container(child: widget.itemBuilder(context, data[index]));
-        });
+    return widget.hostListBuilder(buildListItem, data);
   }
 }
