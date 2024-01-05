@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:scrolling_simulator/domain/models/leaderboard.dart';
 import 'package:scrolling_simulator/extensions/int_extensions.dart';
 
-import '../../../domain/models/metric.dart';
 import '../../../theme/text_style.dart';
 import '../profile/horizontal_avatar.dart';
 
@@ -12,7 +11,7 @@ class LeaderboardHeader extends StatelessWidget {
   const LeaderboardHeader({super.key, required this.currentUserLeaderboard});
 
   String get headerText =>
-      "Your ${currentUserLeaderboard.metric == AchievementMetric.points ? "Points" : "Distance"}";
+      "Your ${currentUserLeaderboard.metric == LeaderboardType.points ? "Points" : "Distance"}";
 
   @override
   Widget build(BuildContext context) {

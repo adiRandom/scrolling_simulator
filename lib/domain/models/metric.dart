@@ -1,4 +1,0 @@
-enum AchievementMetric {
-  points(),
-  distance();
-}

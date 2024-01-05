@@ -9,7 +9,6 @@ import 'package:scrolling_simulator/ui/components/switch/sized_switch.dart';
 import 'package:scrolling_simulator/ui/components/tabs/edge_bookmark_tabs.dart';
 import 'package:scrolling_simulator/ui/size_constants.dart';
 
-import '../../domain/models/metric.dart';
 import '../components/tabs/edge_bookmark_tab.dart';
 import '../image_constants.dart';
 
@@ -37,7 +36,8 @@ class LeaderboardScreen extends StatefulWidget {
               'https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg'),
       rank: 10,
       score: 12345,
-      metric: AchievementMetric.points);
+      metric: LeaderboardType.points,
+      period: LeaderboardPeriod.daily);
 
   final periodButtonIcons = [
     ImageConstants.dailyCalendarIcon,
@@ -176,13 +176,8 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                               right: 24,
                               bottom: SizeConstants.compassBottomPadding),
                           child: LeaderboardList(
-                              items: List.generate(
-                                  20,
-                                  (index) => LeaderboardItem(
-                                      user: widget.sampleUser,
-                                      rank: index + 1,
-                                      score: 100000 - index * 1000,
-                                      metric: AchievementMetric.points))))
+                              items: List.generate(20,
+                                  (index) => widget.currentUserLeaderboard)))
                     ],
                   ))
                 ],
