@@ -6,12 +6,12 @@ import 'client.dart';
 class LeaderboardApi {
   final ApiClient _client = ApiClient();
 
-  static const baseUrl = '${ApiClient.baseUrl}leaderboard/';
+  static const baseUrl = 'leaderboard/';
 
   Future<ApiResponse<List<LeaderboardEntryDto>>> getLeaderboard(
       LeaderboardType type, LeaderboardPeriod timeframe) async {
     final response = await _client.get(
-        '$baseUrl?type=${type.name}&timeframe=${timeframe.name}',
+        '$baseUrl?leaderboard_type=${type.name}&timeframe=${timeframe.name}',
         (bodyJson) => _client.decodeList(
             bodyJson, (jsonBody) => LeaderboardEntryDto.fromJson(jsonBody)));
 

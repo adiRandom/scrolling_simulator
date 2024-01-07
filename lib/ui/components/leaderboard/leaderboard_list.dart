@@ -13,7 +13,7 @@ class LeaderboardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DynamicFadeList(
-        itemCount: 20,
+        itemCount: items.length,
         itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.only(bottom: 6),
               child: LeaderboardCell(

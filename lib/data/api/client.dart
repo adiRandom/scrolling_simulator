@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import '../types.dart';
 
 class ApiClient {
-  static const String baseUrl = 'https://stage.randomhub.eu/api/';
+  static const String baseUrl = 'https://scroll.randomhub.eu/api/';
 
   static final ApiClient _instance = ApiClient._internal();
 
