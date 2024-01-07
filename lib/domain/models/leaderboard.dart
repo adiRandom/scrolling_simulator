@@ -25,12 +25,21 @@ class Leaderboard {
   final List<LeaderboardItem> items;
   final LeaderboardType metric;
   final LeaderboardPeriod period;
+  final LeaderboardItem currentUserEntry;
 
-  Leaderboard(
-      {required this.items, required this.metric, required this.period});
+  Leaderboard({
+    required this.items,
+    required this.metric,
+    required this.period,
+    required this.currentUserEntry,
+  });
 
-  factory Leaderboard.fromEntries(List<LeaderboardEntryDto> entries,
-      LeaderboardType metric, LeaderboardPeriod period) {
+  factory Leaderboard.fromEntries(
+    List<LeaderboardEntryDto> entries,
+    LeaderboardType metric,
+    LeaderboardPeriod period,
+    int currentUserId,
+  ) {
     List<LeaderboardItem> items = [];
     for (int i = 0; i < entries.length; i++) {
       final entry = entries[i];
@@ -43,6 +52,13 @@ class Leaderboard {
           period: period));
     }
 
-    return Leaderboard(items: items, metric: metric, period: period);
+    var currentUserEntry =
+        items.firstWhere((element) => element.user.id == currentUserId);
+
+    return Leaderboard(
+        items: items,
+        metric: metric,
+        period: period,
+        currentUserEntry: currentUserEntry);
   }
 }

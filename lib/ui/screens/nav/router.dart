@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:scrolling_simulator/ui/screens/achievement_screen.dart';
-import 'package:scrolling_simulator/ui/screens/leaderboard_screen.dart';
+import 'package:scrolling_simulator/ui/screens/leaderboard/leaderboard_screen.dart';
 import 'package:scrolling_simulator/ui/screens/main_screen.dart';
 import 'package:scrolling_simulator/ui/screens/nav/root_screen.dart';
 

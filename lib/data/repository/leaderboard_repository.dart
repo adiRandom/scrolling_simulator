@@ -14,10 +14,13 @@ class LeaderboardRepository {
   final LeaderboardApi _api = LeaderboardApi();
 
   Future<Leaderboard> getLeaderboard(
-      LeaderboardType type, LeaderboardPeriod timeframe) async {
+      {required LeaderboardType type,
+      required LeaderboardPeriod timeframe,
+      required int currentUserId}) async {
     final response = await _api.getLeaderboard(type, timeframe);
     if (response.success) {
-      return Leaderboard.fromEntries(response.data!, type, timeframe);
+      return Leaderboard.fromEntries(
+          response.data!, type, timeframe, currentUserId);
     } else {
       throw Exception('Failed to load leaderboard');
     }
