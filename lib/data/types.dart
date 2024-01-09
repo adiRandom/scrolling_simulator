@@ -11,6 +11,27 @@ class PaginatedData<T> {
       required this.total,
       required this.totalPages,
       required this.data});
+
+  factory PaginatedData.fromJson(
+      Map<String, dynamic> json, T Function(dynamic) bodyDecode) {
+    return PaginatedData(
+      page: json['page'],
+      perPage: json['perPage'],
+      total: json['total'],
+      totalPages: json['totalPages'],
+      data: json['data'].map((body) => bodyDecode(body)).toList().cast<T>(),
+    );
+  }
+
+  PaginatedData<R> map<R>(R Function(T) mapper) {
+    return PaginatedData<R>(
+      page: page,
+      perPage: perPage,
+      total: total,
+      totalPages: totalPages,
+      data: data.map((item) => mapper(item)).toList(),
+    );
+  }
 }
 
 class ApiResponse<T> {

@@ -52,8 +52,7 @@ class Post extends StatelessWidget {
                 child: const Skeleton(variant: SkeletonVariant.triple)),
             Container(
               margin: const EdgeInsets.only(top: 20),
-              child:
-                  Text(post.content ?? "", style: ThemeTextStyle.bodyTextStyle),
+              child: Text(post.body ?? "", style: ThemeTextStyle.bodyTextStyle),
             ),
             Container(
                 margin: const EdgeInsets.only(top: 20),
